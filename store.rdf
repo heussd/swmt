@@ -1,0 +1,26 @@
+@prefix :        <http://www.example.org/#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+
+
+:microsoft a :vendor, :trigger ;
+    rdfs:label "Microsoft", "MS";
+    :produces :word , :excel, :windows.
+
+:apple a :vendor, :trigger;
+  rdfs:label "Apple";
+  :produces :numbers , :pages , :iphone .
+
+:produces rdfs:label "produces"@en, "produziert"@de.
+:producedby rdfs:label "by"@en, "produziert von"@de, "von"@de.
+
+:produces owl:inverseOf :producedby .
+
+:numbers rdfs:label "Numbers" .
+:word rdfs:label "Word" .
+:windows rdfs:label "Windows" .
+:pages rdfs:label "Pages" .
+
+
+
