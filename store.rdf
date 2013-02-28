@@ -1,26 +1,30 @@
 @prefix :        <http://www.example.org/#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 
+# Word and Excel are developed by MS
+dbpedia:Microsoft_Word dbp:developer dbpedia:Microsoft .
+dbpedia:Microsoft_Excel dbp:developer dbpedia:Microsoft .
 
-:microsoft a :vendor, :trigger ;
-    rdfs:label "Microsoft", "MS";
-    :produces :word , :excel, :windows.
+# OSX and Pages are developed by Apple
+dbpedia:OS_X dbp:developer dbpedia:Apple_Inc .
+<http://dbpedia.org/resource/Pages_(word_processor)> dbp:developer dbpedia:Apple_Inc .
 
-:apple a :vendor, :trigger;
-  rdfs:label "Apple";
-  :produces :numbers , :pages , :iphone .
+# Simple label forms via wikiPageDisambiguates
+dbpedia:Excel dbo:wikiPageDisambiguates dbpedia:Microsoft_Excel ; rdfs:label "Excel" .
+<http://dbpedia.org/resource/Word_(disambiguation)> dbo:wikiPageDisambiguates dbpedia:Microsoft_Word ; rdfs:label "Word" .
+dbpedia:Page dbo:wikiPageDisambiguates <http://dbpedia.org/resource/Pages_(word_processor)> ; rdfs:label "Pages" .
+dbpedia:MS dbo:wikiPageDisambiguates dbpedia:Microsoft ; rdfs:label "MS" .
+dbpedia:Apple dbo:wikiPageDisambiguates dbpedia:Apple_Inc ; rdfs:label "Apple" .
 
+# Application specific: Define trigger words
+dbpedia:Microsoft_Word a :trigger .
+dbpedia:Apple_Inc a :trigger .
+
+# Application specific: Make dbp:developer human readable
+dbp:developer rdfs:label "by"@en, "von"@de, "produziert von"@de .
 :produces rdfs:label "produces"@en, "produziert"@de.
-:producedby rdfs:label "by"@en, "produziert von"@de, "von"@de.
-
-:produces owl:inverseOf :producedby .
-
-:numbers rdfs:label "Numbers" .
-:word rdfs:label "Word" .
-:windows rdfs:label "Windows" .
-:pages rdfs:label "Pages" .
-
-
-
+:produces owl:inverseOf dbp:developer .

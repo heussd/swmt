@@ -5,12 +5,12 @@ public class Main {
 		System.out.println("Source sentence:\t\t\t" + sentence);
 
 		TrivialDictionary dict = TrivialDictionary.getInstance();
-		SemanticCore core = SemanticCore.getInstance();
+		Semantics semantics = Semantics.getInstance();
 
-		System.out.println("Babel Fish like translation:\t\t" + dict.translate(sentence));
-
-		if (core.hasTriggerWord(sentence))
-			dict.addCorpus(core.translate(sentence, "de"));
+		for (String word : sentence.split(" ")) {
+			if (semantics.isTrigger(word))
+				dict.addCorpus(semantics.createTripleTranslations(word, "DE"));
+		}
 
 		System.out.println("Semantic Web enhanced translation:\t" + dict.translate(sentence));
 	}
