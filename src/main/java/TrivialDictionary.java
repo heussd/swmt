@@ -28,6 +28,9 @@ public class TrivialDictionary {
 		babelFishDictionary.put("is", "ist");
 		babelFishDictionary.put("better", "besser");
 		babelFishDictionary.put("than", "als");
+		babelFishDictionary.put("word processor", "Textverarbeitung");
+		babelFishDictionary.put(" a", " eine");
+		babelFishDictionary.put("like", "wie");
 	}
 
 	public void addCorpus(HashMap<String, String> corpus) {
@@ -43,11 +46,10 @@ public class TrivialDictionary {
 			
 			if (!mask.replaceAll((String) e.getKey(), "x").equals(mask)) {
 				mask = mask.replaceAll((String) e.getKey(), "x");
-				
 				sentence = sentence.replaceAll((String) e.getKey(), (String) e.getValue());
 			}
 		}
-
+		
 		iterator = babelFishDictionary.entrySet().iterator();
 
 		while (iterator.hasNext()) {
@@ -55,6 +57,7 @@ public class TrivialDictionary {
 
 			if (!mask.replaceAll((String) e.getKey(), "x").equals(mask)) {
 				mask = mask.replaceAll((String) e.getKey(), "x");
+
 				sentence = sentence.replaceAll((String) e.getKey(), (String) e.getValue());
 			}
 			
